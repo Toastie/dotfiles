@@ -1,0 +1,39 @@
+##                                  ##
+##          REMOTE VERSION          ##
+## Use on servers accessed with ssh ##
+##                                  ##
+
+# Enable quick config reload with r
+bind r source-file ~/.tmux.conf
+
+# Enable TRUECOLOR support
+set -ga terminal-overrides ",xterm-256color:Tc"
+
+# Remember CWD on pane split
+bind c new-window -c "#{pane_current_path}"
+bind % split-window -h -c "#{pane_current_path}"
+bind '"' split-window -v -c "#{pane_current_path}"
+
+# Enable mouse click to select pane
+set -g mouse on
+
+# Switch windows with alt + arrow
+bind -r M-Right select-window -n
+bind -r M-Left select-window -p
+
+# Status Page options	
+set -g status-position bottom
+set -g status-justify left
+set -g status-left ''
+set -g status-style bg=colour237,fg=white
+set -g status-right '#(whoami)@#(hostname -f)  %H:%M %d-%m-%Y '
+
+# Window options
+setw -g window-status-current-style fg=white,bg=green,bold
+setw -g window-status-current-format ' #I #W #F '
+
+setw -g window-status-style bg=black
+setw -g window-status-format ' #I #W #F '
+
+# Disable automatic window renaming
+#set-option -g automatic-rename off
